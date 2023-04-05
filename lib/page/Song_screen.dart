@@ -61,6 +61,8 @@ class _SongScreenState extends State<SongScreen> {
       appBar: AppBar(
         backgroundColor: const Color(0xff151521),
         elevation: 0,
+        title: Text('Playing Now',
+          style: TextStyle(fontSize: 15, color: Colors.white),),
       ),
       body: Stack(
         children: [
@@ -71,10 +73,6 @@ class _SongScreenState extends State<SongScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
-                  'Playing Now',
-                  style: TextStyle(fontSize: 15, color: Colors.white),
-                ),
                 const SizedBox(height: 30),
                 Container(
                   width: 325,
@@ -137,9 +135,6 @@ class _MusicPlayer extends StatelessWidget {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
-              ),
-              const SizedBox(
-                width: 250,
               ),
               LikeButton(
                 likeBuilder: (isTapped) {

@@ -35,8 +35,8 @@ class _SplashScreenState extends State<SplashScreen> {
                 padding: const EdgeInsets.only(top: 300),
                 child: Column(
                   children: [
-                    Image.asset('images/logo_splash.png',
-                        width: 400,
+                    Image.asset('assets/images/logo.png',
+                        width: 100,
                         height: 100,
                         fit: BoxFit.fill,
                         color: Colors.green,

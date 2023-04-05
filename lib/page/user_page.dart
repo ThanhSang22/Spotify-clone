@@ -29,11 +29,11 @@ Widget getBody(BuildContext context) {
       Align(
         alignment: Alignment.center,
         child: Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 100),
             child: Column(
               children: [
                 Image.asset(
-                  'images/Elip1.png',
+                  'assets/images/Elip1.png',
                   height: 100,
                 ),
                 const SizedBox(
@@ -48,7 +48,7 @@ Widget getBody(BuildContext context) {
             )),
       ),
       Padding(
-        padding: const EdgeInsets.only(top: 170, left: 30),
+        padding: const EdgeInsets.only(top: 250, left: 30),
         child: Container(
             child: Stack(
             children: [

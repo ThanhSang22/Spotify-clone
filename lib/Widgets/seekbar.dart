@@ -105,7 +105,7 @@ class _SeekBarState extends State<SeekBar> {
               _formatDuration(widget.position),
               style: TextStyle(color: Colors.white),
             ),
-            SizedBox(width: 370),
+            SizedBox(width: 200),
             Text(
               _formatDuration(widget.duration),
               style: TextStyle(color: Colors.white),
