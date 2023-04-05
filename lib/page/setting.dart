@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:spotify_clone/models/playlist_model.dart';
-import 'package:spotify_clone/models/song_model.dart';
-import 'package:spotify_clone/page/Song_screen.dart';
-import 'package:spotify_clone/page/Song_screen/Song_screen1.dart';
-import 'package:spotify_clone/page/Song_screen/Song_screen2.dart';
-import 'package:spotify_clone/page/home.dart';
 import 'package:spotify_clone/page/login_page.dart';
-import 'package:spotify_clone/page/welcomeScreen.dart';
+import 'package:spotify_clone/models/setting_model.dart';
+
 
 class SittingScreen extends StatefulWidget {
   const SittingScreen({Key? key}) : super(key: key);
@@ -22,25 +16,25 @@ class _SittingState extends State<SittingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List settings = setting;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Row(
-          children: [
-            IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios_outlined,
-                size: 20,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              }
-            ),
-            const SizedBox(
-              width: 100,
-            ),
-            const Text(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            // IconButton(
+            //   icon: const Icon(
+            //     Icons.arrow_back_ios_outlined,
+            //     size: 20,
+            //     color: Colors.black,
+            //   ),
+            //   onPressed: () {
+            //     Navigator.pop(context);
+            //   }
+            // ),
+
+            Text(
               'Cài đặt',
               style: TextStyle(
                 color: Colors.white,
@@ -56,35 +50,11 @@ class _SittingState extends State<SittingScreen> {
         decoration: const BoxDecoration(color: Color(0xff000000)),
         child: Stack(
           children: [
-            // Align(
-            //   alignment: Alignment.topCenter,
-            //   child: Row(
-            //     children: [
-            //       IconButton(
-            //       onPressed: () {
-            //         Navigator.push(
-            //           context,
-            //           MaterialPageRoute(builder: (context) => HomePage()),
-            //         );
-            //        },
-            //           icon: Icon(
-            //             Icons.arrow_back_ios_outlined,
-            //             size: 25,
-            //             color: Colors.white,
-            //           )
-            //       ),
-            //       SizedBox(
-            //         height: 200,
-            //       ),
-            //       Text('Cài đặt', style: TextStyle(color: Colors.yellow, fontSize: 30),)
-            //     ],
-            //   )
-            // ),
             ListView(
               children: [
               Padding(
                 padding:
-                  const EdgeInsets.only(left: 10, right: 15),
+                  const EdgeInsets.only(left: 15, right: 5),
                   child: Column(
                     children: [
                       Row(
@@ -114,31 +84,60 @@ class _SittingState extends State<SittingScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20,),
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Tài khoản',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15
-                              ),
-                            ),
-                            IconButton(
-                                alignment: Alignment.centerLeft,
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.navigate_next_outlined,
-                                  color: Colors.grey,
-                                  size: 25,
-                                )
-                            ),
-                          ],
+                      SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Column(
+                            children: List.generate(setting.length, (index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: GestureDetector(
+                                  onTap: () {},
+                                  child: Stack(
+                                    alignment: Alignment.bottomCenter,
+                                    children: [
+                                      Container(
+                                        // width: MediaQuery.of(context).size.width * 0.31,
+                                        // height: 50,
+                                        margin: const EdgeInsets.only(bottom: 10),
+                                        decoration: BoxDecoration(
+                                            color: Colors.white.withOpacity(0),
+                                            borderRadius: BorderRadius.circular(10)),
+                                        child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(
+                                                  setting[index]['title'],
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                    // fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  setting[index]['icon'],
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                      fontWeight: FontWeight.w400,
+                                                      color: Colors.grey,
+                                                      fontSize: 35
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 20,),
                       ElevatedButton(
                           onPressed: () {
                             Navigator.of(context)
@@ -154,7 +153,11 @@ class _SittingState extends State<SittingScreen> {
                           ),
                           child: const Text('Đăng xuất',
                             style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
-                          ))
+                          )),
+                      SizedBox(
+                        height: 50,
+                      )
+
                   ],
                 ))
               ],

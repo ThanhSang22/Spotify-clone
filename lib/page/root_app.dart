@@ -18,7 +18,7 @@ class _RootAppState extends State<RootApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff151521),
+      backgroundColor: const Color(0xff151521),
       bottomNavigationBar: getFooter(),
       body: getBody(),
     );
@@ -27,7 +27,7 @@ class _RootAppState extends State<RootApp> {
   Widget getBody() {
     return IndexedStack(
       index: activeTab,
-      children: [
+      children: const [
         HomePage(),
         Favorite(),
         SongScreen(),
@@ -47,7 +47,7 @@ class _RootAppState extends State<RootApp> {
     ];
     return Container(
       height: 50,
-      decoration: BoxDecoration(color: Color(0xff24242E)),
+      decoration: const BoxDecoration(color: Color(0xff24242E)),
       child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Row(
@@ -58,7 +58,7 @@ class _RootAppState extends State<RootApp> {
                   icon: Icon(
                     items[index],
                     color:
-                        activeTab == index ? Color(0xff24CBCA) : Colors.white,
+                        activeTab == index ? const Color(0xff24CBCA) : Colors.white,
                   ),
                   onPressed: () {
                     setState(() {

@@ -9,6 +9,34 @@ class RegisterEmailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Row(
+          children: [
+            IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_outlined,
+                size: 20,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(WelcomeScreen.routeName);
+              },
+            ),
+            const SizedBox(
+              width: 50,
+            ),
+            const Text(
+              'Tạo tài khoản',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            )
+          ],
+        ),
+      ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -17,31 +45,6 @@ class RegisterEmailScreen extends StatelessWidget {
           children: [
             const SizedBox(
               height: 10,
-            ),
-            Row(
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.arrow_back_ios_outlined,
-                    size: 20,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context)
-                        .pushReplacementNamed(WelcomeScreen.routeName);
-                  },
-                ),
-                const SizedBox(
-                  width: 150,
-                ),
-                const Text(
-                  'Tạo tài khoản',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                )
-              ],
             ),
             Align(
               child: Padding(

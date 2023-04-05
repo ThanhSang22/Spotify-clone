@@ -72,7 +72,7 @@ class Login extends State<LoginPage> {
                   icon: const Icon(
                     Icons.arrow_back_ios_outlined,
                     size: 20,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                   onPressed: () {
                     Navigator.of(context)
@@ -92,17 +92,20 @@ class Login extends State<LoginPage> {
               ],
             ),
           ),
-          body: SingleChildScrollView(
+          body: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: const BoxDecoration(color: Color(0xff000000)),
             child: Stack(
               children: [
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  // width: 800,
-                  height: 900,
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                  ),
-                  child: Column(
+                // Container(
+                //   margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                //   // width: 800,
+                //   height: 900,
+                //   decoration: const BoxDecoration(
+                //     color: Colors.black,
+                //   ),
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -185,9 +188,10 @@ class Login extends State<LoginPage> {
                                     //     primary: const Color(0xff00cea6)),
                                     onPressed: () {
                                       Navigator.pushNamed(context, RootApp.routeName,
-                                          arguments: User("Thanh Sang", 'avatar.png',
-                                              'thanhsang@gmail.com'));
+                                          arguments: User("Sang Thanh", 'avatar.png',
+                                              'thanhsang78202@gmail.com'));
                                     },
+
                                     style: ElevatedButton.styleFrom(
                                       // side: BorderSide(width: 2, color: Colors.white),
                                       primary: Colors.grey,
@@ -251,7 +255,7 @@ class Login extends State<LoginPage> {
                       ),
                     ],
                   ),
-                )
+                // )
               ],
             ),
           ),

@@ -59,7 +59,7 @@ class _SongScreenState extends State<SongScreen2> {
         elevation: 0,
         title: const Text(
           'Playing Now',
-          style: TextStyle(fontSize: 20, color: Colors.white),
+          style: TextStyle(fontSize: 17, color: Colors.white),
         ),
       ),
       body: Stack(
@@ -75,7 +75,7 @@ class _SongScreenState extends State<SongScreen2> {
                 Container(
                   width: 325,
                   height: 325,
-                  margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  margin: const EdgeInsets.fromLTRB(80, 0, 0, 0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10.0),
                     child: Stack(
@@ -133,9 +133,6 @@ class _MusicPlayer extends StatelessWidget {
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
-              ),
-              const SizedBox(
-                width: 250,
               ),
               LikeButton(
                 likeBuilder: (isTapped) {

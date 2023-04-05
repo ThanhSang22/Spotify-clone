@@ -30,9 +30,6 @@ class _HistoryScreen extends State<HistoryScreen> {
                   Navigator.pop(context);
                 }
             ),
-            const SizedBox(
-              width: 100,
-            ),
             const Text(
               'Mới phát gần đây',
               style: TextStyle(

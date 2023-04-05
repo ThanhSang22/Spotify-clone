@@ -57,7 +57,7 @@ class _FavoriteState extends State<Favorite> {
                           )),
                       ClipRRect(
                           child: Image.asset(
-                        'images/Elip3.png',
+                        'assets/images/Elip3.png',
                         width: 100,
                         height: 100,
                         fit: BoxFit.cover,
