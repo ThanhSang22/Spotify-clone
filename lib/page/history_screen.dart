@@ -3,16 +3,13 @@ import 'package:spotify_clone/page/home.dart';
 
 class HistoryScreen extends StatefulWidget {
   const HistoryScreen({Key? key}) : super(key: key);
-  static const routeName = "/SittingScreen";
+  static const routeName = "/HistoryScreen";
 
   @override
   State<HistoryScreen> createState() => _HistoryScreen();
-
 }
 
-
 class _HistoryScreen extends State<HistoryScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +25,7 @@ class _HistoryScreen extends State<HistoryScreen> {
                 ),
                 onPressed: () {
                   Navigator.pop(context);
-                }
-            ),
+                }),
             const Text(
               'Mới phát gần đây',
               style: TextStyle(
@@ -47,56 +43,58 @@ class _HistoryScreen extends State<HistoryScreen> {
         child: Stack(
           children: [
             ListView(
-               children: [
-                 Padding(
-                     padding: EdgeInsets.all(16.0),
-                     child: Column(
-                       mainAxisAlignment: MainAxisAlignment.start,
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       children: [
-                         Column(
-                           children: const [
-                             Text(
-                               'Hôm nay',
-                               style: TextStyle(
-                                   fontWeight: FontWeight.w600,
-                                   fontSize: 20,
-                                   color: Colors.white
-                               ),
-                             )
-                           ],
-                         ),
-                         const SizedBox(height: 100,),
-                         Column(
-                           children: const [
-                             Text(
-                               'Hôm qua',
-                               style: TextStyle(
-                                   fontWeight: FontWeight.w600,
-                                   fontSize: 20,
-                                   color: Colors.white
-                               ),
-                             )
-                           ],
-                         ),
-                         const SizedBox(height: 100,),
-                         Column(
-                           children: const [
-                             Text(
-                               'Hôm kia',
-                               style: TextStyle(
-                                   fontWeight: FontWeight.w600,
-                                   fontSize: 20,
-                                   color: Colors.white
-                               ),
-                             )
-                           ],
-                         ),
-                         const SizedBox(height: 100,),
-                       ],
-                     )
-                 ),
-               ],
+              children: [
+                Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          children: const [
+                            Text(
+                              'Hôm nay',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20,
+                                  color: Colors.white),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 100,
+                        ),
+                        Column(
+                          children: const [
+                            Text(
+                              'Hôm qua',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20,
+                                  color: Colors.white),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 100,
+                        ),
+                        Column(
+                          children: const [
+                            Text(
+                              'Hôm kia',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20,
+                                  color: Colors.white),
+                            )
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 100,
+                        ),
+                      ],
+                    )),
+              ],
             )
           ],
         ),
@@ -104,5 +102,3 @@ class _HistoryScreen extends State<HistoryScreen> {
     );
   }
 }
-
-

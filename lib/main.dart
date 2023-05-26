@@ -1,15 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify_clone/page/Song_screen.dart';
 import 'package:spotify_clone/page/Song_screen/Song_screen1.dart';
 import 'package:spotify_clone/page/Song_screen/Song_screen2.dart';
+import 'package:spotify_clone/page/home.dart';
+import 'package:spotify_clone/page/login.dart';
 import 'package:spotify_clone/page/login_page.dart';
 
 import 'package:spotify_clone/page/root_app.dart';
 import 'package:spotify_clone/page/setting.dart';
 import 'package:spotify_clone/page/user_page.dart';
 import 'package:spotify_clone/page/register_email.dart';
-import 'package:spotify_clone/page/register_pass.dart';
+// import 'package:spotify_clone/page/register_pass.dart';
 import 'package:spotify_clone/page/splashScreen.dart';
 import 'package:spotify_clone/page/welcomeScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -34,19 +37,43 @@ class MyApp extends StatelessWidget {
         create: (context) => GoogleSignInProvider(),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.active) {
+                if (snapshot.hasData) {
+                  return const RootApp();
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('${snapshot.error}'),
+                  );
+                }
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                );
+              }
+
+              return const LoginScreen();
+            },
+          ),
+          // home: const SplashScreen(),
           routes: {
-            WelcomeScreen.routeName: (context) => WelcomeScreen(),
-            RegisterEmailScreen.routeName: (context) => RegisterEmailScreen(),
-            RegisterPassScreen.routeName: (context) => RegisterPassScreen(),
-            RootApp.routeName: (context) => RootApp(),
-            SongScreen.routeName: (context) => SongScreen(),
-            SongScreen2.routeName: (context) => SongScreen2(),
-            SongScreen1.routeName: (context) => SongScreen1(),
-            LoginPage.routeName: (context) => LoginPage(title: 'login'),
-            UserPage.routeName: (context) => UserPage(),
-            SongScreen1.routeName: (context) => SongScreen1(),
-            SittingScreen.routeName: (context) => SittingScreen(),
+            WelcomeScreen.routeName: (context) => const WelcomeScreen(),
+            RegisterPage.routeName: (context) => const RegisterPage(
+                  title: 'register',
+                ),
+            RootApp.routeName: (context) => const RootApp(),
+            SongScreen.routeName: (context) => const SongScreen(),
+            SongScreen2.routeName: (context) => const SongScreen2(),
+            SongScreen1.routeName: (context) => const SongScreen1(),
+            LoginPage.routeName: (context) => const LoginPage(title: 'login'),
+            UserPage.routeName: (context) => const UserPage(),
+            SongScreen1.routeName: (context) => const SongScreen1(),
+            SittingScreen.routeName: (context) => const SittingScreen(),
           },
         ));
   }

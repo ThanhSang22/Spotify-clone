@@ -16,23 +16,11 @@ class _NotificationsScreen extends State<NotificationsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color(0xe7000000),
         title: Row(
-          children: [
-            IconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios_outlined,
-                  size: 20,
-                  color: Colors.black,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                }
-            ),
-            const SizedBox(
-              width: 50,
-            ),
-            const Text(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text(
               'Có gì mới',
               style: TextStyle(
                 color: Colors.white,
@@ -45,28 +33,59 @@ class _NotificationsScreen extends State<NotificationsScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: new BoxDecoration(color: const Color(0xff000000)),
+        decoration: new BoxDecoration(color: const Color(0xfd000000)),
         child: Stack(
           children: [
             ListView(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const[
-                      Text(
+                    children: [
+                      const Text(
                         'Có gì mới',
                         style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w600),
                       ),
-                      SizedBox(height: 10,),
-                      Text('Nội dung phát hành mới nhất từ nghệ sĩ, podcast và chương trình bạn theo dõi.',
+                      const SizedBox(height: 10,),
+                      const Text('Nội dung phát hành mới nhất từ nghệ sĩ, podcast và chương trình bạn theo dõi.',
                         style:TextStyle(color: Colors.grey, fontSize: 15),),
                       //BUTTON
-
-                      SizedBox(height: 15,),
-                      Text(
+                      const SizedBox(height: 15,),
+                      Row(
+                        children: [
+                          OutlinedButton(
+                            onPressed: () {},
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor: const Color(0x56C7C7CD),// background
+                              // primary: Colors.orange, // foreground text
+                              minimumSize: const Size(30, 35),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                            ),
+                            child: const Text('Nhạc',
+                                style: TextStyle( color: Colors.white)),
+                          ),
+                          const SizedBox(width: 10,),
+                          OutlinedButton(
+                            onPressed: () {},
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor: const Color(0x56C7C7CD),// background
+                              // primary: Colors.orange, // foreground text
+                              minimumSize: const Size(30, 35),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                            ),
+                            child: const Text('Postcast và chương trình',
+                                style: TextStyle( color: Colors.white)),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 15,),
+                      const Text(
                           'Mới',
                           style:TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500)
                       )
