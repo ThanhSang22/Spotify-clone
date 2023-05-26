@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_clone/page/login.dart';
 import 'package:spotify_clone/page/login_page.dart';
 import 'package:spotify_clone/page/register_email.dart';
+import 'package:spotify_clone/page/root_app.dart';
+import 'package:spotify_clone/provider/facebook_login.dart';
 import 'package:spotify_clone/provider/google_sign_in.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
   static const routeName = "/welcomeScreen";
-  @override
+
   WelcomeScreen createState() => const WelcomeScreen();
 
   @override
@@ -55,7 +58,7 @@ class WelcomeScreen extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pushReplacementNamed(
-                            RegisterEmailScreen.routeName);
+                            RegisterPage.routeName);
                       },
                       style: ElevatedButton.styleFrom(
                         // side: BorderSide(width: 2, color: Colors.white),
@@ -104,6 +107,8 @@ class WelcomeScreen extends StatelessWidget {
                         final provider =
                             Provider.of<GoogleSignInProvider>(context, listen:false);
                         provider.googleLogin();
+                        Navigator.of(context)
+                            .pushReplacementNamed(RootApp.routeName);
                       },
                       style: OutlinedButton.styleFrom(
                         // backgroundColor: Colors.white,// background
@@ -127,7 +132,11 @@ class WelcomeScreen extends StatelessWidget {
                       height: 10,
                     ),
                     OutlinedButton.icon(
-                      onPressed: () {},
+                      onPressed: () async {
+                        // await signInWithFacebook();
+                        // LoginPage.routeName;
+                        // // setState(() {});
+                      },
                       style: OutlinedButton.styleFrom(
                         // backgroundColor: Colors.white,// background
                         // primary: Colors.orange, // foreground text
@@ -174,8 +183,11 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context)
-                            .pushReplacementNamed(LoginPage.routeName);
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const LoginScreen(),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         // side: BorderSide(width: 2, color: Colors.white),

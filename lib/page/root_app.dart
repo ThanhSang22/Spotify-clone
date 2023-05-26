@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/Widgets/logged_in_widget.dart';
 import 'package:spotify_clone/page/Song_screen.dart';
 import 'package:spotify_clone/page/dowload_page.dart';
 import 'package:spotify_clone/page/favorite_page.dart';
 import 'package:spotify_clone/page/home.dart';
+import 'package:spotify_clone/page/library.dart';
 import 'package:spotify_clone/page/user_page.dart';
+
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
@@ -30,9 +33,10 @@ class _RootAppState extends State<RootApp> {
       children: const [
         HomePage(),
         Favorite(),
+        Library(),
         SongScreen(),
         // DowloadPage(),
-        UserPage(),
+        // UserPage(),
       ],
     );
   }
@@ -41,9 +45,10 @@ class _RootAppState extends State<RootApp> {
     List items = [
       Icons.home,
       Icons.favorite,
+      Icons.library_music_outlined,
       Icons.play_circle,
       // Icons.download,
-      Icons.person,
+      // Icons.person,
     ];
     return Container(
       height: 50,

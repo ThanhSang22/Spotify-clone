@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot){
           if (snapshot.connectionState == ConnectionState.waiting){
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasData){
             // return LognInWidget();
             return Scaffold(
@@ -311,9 +311,285 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }else if(snapshot.hasError){
-            return Center(child: Text('Something wwent Worng'));
+            return const Center(child: Text('Something wwent Worng'));
           } else {
-            return SignUpWidget();
+            // return SignUpWidget();
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.black,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Xin chào',
+                      style: Theme.of(context).textTheme.headline6!.copyWith(
+                          fontWeight: FontWeight.bold, color: Colors.white, fontSize: 25),
+                    ), //Hello
+                    Row(
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const NotificationsScreen()),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.notifications_none_outlined,
+                              size: 25,
+                              color: Colors.white,
+                            )
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const HistoryScreen()),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.access_time_outlined,
+                              size: 25,
+                              color: Colors.white,
+                            )
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const SittingScreen()),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.settings,
+                              size: 25,
+                              color: Colors.white,
+                            )
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+              body: Scaffold(
+                backgroundColor: Colors.black,
+                body: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const _DiscoverMusic(),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 20.0,
+                          top: 20.0,
+                          bottom: 20.0,
+                          right: 10.0,
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Tuyển tập hàng đầu của bạn',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6!
+                                      .copyWith(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text('See all',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline6!
+                                        .copyWith(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400)),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 30,
+                            ),
+
+                            ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: playlists.length,
+                                itemBuilder: ((context, index) {
+                                  return Container(
+                                    height: 60,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          child: Image.asset(
+                                            playlists[index].image,
+                                            height: 50,
+                                            width: 50,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 20),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  playlists[index].title,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  playlists[index].name,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Colors.white,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => const SongScreen2()),
+                                            );
+                                          },
+                                          icon: const Icon(
+                                            Icons.play_circle,
+                                            color: Colors.greenAccent,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                })),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Hot Music',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6!
+                                      .copyWith(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text('See all',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline6!
+                                        .copyWith(
+                                        color: Colors.white,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400)),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: songs.length,
+                                itemBuilder: ((context, index) {
+                                  return Container(
+                                    height: 60,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          child: Image.asset(
+                                            songs[index].coverUrl,
+                                            height: 50,
+                                            width: 50,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 20),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  songs[index].title,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  songs[index].description,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Colors.white,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => const SongScreen()),
+                                            );
+                                          },
+                                          icon: const Icon(
+                                            Icons.play_circle,
+                                            color: Colors.greenAccent,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }))
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
           }
         },
       ),

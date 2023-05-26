@@ -1,10 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:spotify_clone/page/Profile.dart';
+import 'package:spotify_clone/page/login.dart';
 import 'package:spotify_clone/page/login_page.dart';
 import 'package:spotify_clone/models/setting_model.dart';
 
+import '../provider/auth.dart';
+
 
 class SittingScreen extends StatefulWidget {
-  const SittingScreen({Key? key}) : super(key: key);
+  const SittingScreen({Key? key, }) : super(key: key);
   static const routeName = "/SittingScreen";
 
   @override
@@ -13,27 +19,29 @@ class SittingScreen extends StatefulWidget {
 }
 
 class _SittingState extends State<SittingScreen> {
+  var userData = {};
+  getData() async{
+    try {
+      var snap = AuthMethods().getUserDetails();
+      userData = snap as Map;
+      setState(() {
+
+      });
+    } catch(e) {}
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     List settings = setting;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color(0xe7000000),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            // IconButton(
-            //   icon: const Icon(
-            //     Icons.arrow_back_ios_outlined,
-            //     size: 20,
-            //     color: Colors.black,
-            //   ),
-            //   onPressed: () {
-            //     Navigator.pop(context);
-            //   }
-            // ),
-
             Text(
               'Cài đặt',
               style: TextStyle(
@@ -65,17 +73,23 @@ class _SittingState extends State<SittingScreen> {
                               const Icon(Icons.account_circle_outlined, size: 30, color: Colors.white,),
                               const SizedBox(width: 10,),
                               Column(
-                                children: const[
-                                  Text('Thanh Sang', style:TextStyle(color: Colors.white, fontSize: 15),),
-                                  SizedBox(height: 2,),
-                                  Text('Xem Hồ sơ', style: TextStyle(color: Colors.grey, fontSize: 10),)
+                                children:[
+                                  Text(
+                                    user?.displayName.toString() ?? userData['username'],
+                                    style: const TextStyle(color: Colors.white, fontSize: 15),
+                                  ),
+                                  const SizedBox(height: 2,),
+                                  const Text('Xem Hồ sơ', style: TextStyle(color: Colors.grey, fontSize: 10),)
                                 ],
                               ),
                             ],
                           ),
                           IconButton(
                             alignment: Alignment.centerLeft,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context, MaterialPageRoute(builder: (context) => const Profile(title: '')));
+                              },
                               icon: const Icon(
                                 Icons.navigate_next_outlined,
                                 color: Colors.grey,
@@ -140,8 +154,11 @@ class _SittingState extends State<SittingScreen> {
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context)
-                                .pushReplacementNamed(LoginPage.routeName);
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => const LoginScreen(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             // side: BorderSide(width: 2, color: Colors.white),
@@ -154,7 +171,7 @@ class _SittingState extends State<SittingScreen> {
                           child: const Text('Đăng xuất',
                             style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       )
 
